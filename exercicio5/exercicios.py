@@ -1,21 +1,17 @@
+'''5- Verificador de Número Primo
+Enunciado:
+Crie um programa que solicite um número inteiro positivo ao usuário e verifique se ele é um número primo. Um número primo só é divisível por 1 e por ele mesmo.'''
 
-num1 = float(input("Digite o primeiro número: "))
-num2 = float(input("Digite o segundo número: "))
-
-
-operacao = input("Escolha a operação (+, -, * ou /): ")
-if operacao == "+":
-    resultado = num1 + num2
-elif operacao == "-":
-    resultado = num1 - num2
-elif operacao == "*":
-    resultado = num1 * num2
-elif operacao == "/":
-    if num2 != 0:
-        resultado = num1 / num2
-    else:
-        resultado = "Erro: divisão por zero!"
+numero = int(input("Digite um número inteiro positivo: "))
+if numero < 2:
+    print(f"O número {numero} não é primo.")
 else:
-    resultado = "Operação inválida!"
-
-print("Resultado:", resultado)
+    e_primo = True
+    for i in range(2, numero):
+        if numero % i == 0:
+            e_primo = False
+            break
+    if e_primo:
+        print(f"O número {numero} é primo.")
+    else:
+        print(f"O número {numero} não é primo.")
