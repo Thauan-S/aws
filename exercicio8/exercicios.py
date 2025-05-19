@@ -1,26 +1,23 @@
-'''8- Calculadora Simples
-Enunciado:
-Crie um programa que simule uma calculadora simples. O usuário deve informar dois números e a operação desejada (+, -, *, /) e o programa deve exibir o resultado da operação.'''
 
-num1 = float(input("Digite o primeiro número: "))
-num2 = float(input("Digite o segundo número: "))
+nota = float(input("Avalie o restaurante (0 a 5 estrelas): "))
 
-operacao = input("Digite a operação a ser realizada (+, -, *, /): ")
+if nota == 5:
+    print("★★★★★ - Excelente! Comida maravilhosa e ótimo atendimento!")    
 
-if operacao == "+":
-    resultado = num1 + num2
-    print(f"O resultado de {num1} + {num2} é: {resultado}")
-elif operacao == "-":
-    resultado = num1 - num2
-    print(f"O resultado de {num1} - {num2} é: {resultado}")
-elif operacao == "*":
-    resultado = num1 * num2
-    print(f"O resultado de {num1} * {num2} é: {resultado}")
-elif operacao == "/":
-    if num2 != 0:        
-        resultado = num1 / num2
-        print(f"O resultado de {num1} + {num2} é: {resultado}")
-    else:
-        print("Erro!!! divisão por zero não permitida.")
+elif nota >= 4:
+    print("★★★★☆ - Muito bom! Voltaria com certeza.")    
+
+elif nota >= 3:
+    print("★★★☆☆ - Razoável, mas tem espaço para melhorar.")    
+
+elif nota >= 2:
+    print("★★☆☆☆ - Precisa melhorar em vários pontos.")    
+
+elif nota >= 1:
+    print("★☆☆☆☆ - Experiência ruim, não recomendo.")    
+
+elif nota >= 0:
+    print("☆☆☆☆☆ - Péssimo! Comida e serviço deixaram a desejar.")    
+
 else:
-    print("Operação inválida.")
+    print("Nota inválida. Por favor, insira uma nota entre 0 e 5.")
