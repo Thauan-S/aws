@@ -1,31 +1,26 @@
+'''Crie um programa que verifique se uma senha é forte. Uma senha forte deve ter pelo menos 8 caracteres e conter pelo menos um número. O programa deve continuar pedindo senhas até que uma válida seja inserida ou o usuário digite 'sair'.'''
 
-valor = float(input("Digite a temperatura: "))
-origem = input("Digite a unidade de origem (C, F, K): ").upper()
-destino = input("Digite a unidade de destino (C, F, K): ").upper()
-if origem == "C":
-    if destino == "F":
-        resultado = (valor * 9/5) + 32
-    elif destino == "K":
-        resultado = valor + 273.15
-    else:
-        resultado = valor
-elif origem == "F":
-    if destino == "C":
-        resultado = (valor -32) * 5/9
-    elif destino == "K":
-        resultado = (valor - 32) * 5/9 + 273.15
-    else:
-        resultado = valor
-elif origem == "K":
-    if destino == "C":
-        resultado = valor - 273.15
-    elif destino == "F":
-        resultado = (valor - 273.15) * 9/5 + 32
-    else:
-        resultado = valor
-else:
-    resultado = None
-if resultado is not None:
-    print(f"Temperatura convertida: {resultado:.2f} {destino}")
-else:
-    print("Unidade inválida informada.")
+import re  # Importa o módulo de expressões regulares (usado para verificar se há números)
+
+# Laço que continuará até que o usuário digite uma senha forte ou "sair"
+while True:
+    senha = input("Digite uma senha (ou 'sair' para encerrar): ")
+
+    # Verifica se o usuário quer encerrar
+    if senha.lower() == 'sair':
+        print("Programa encerrado.")
+        break  # Encerra o laço
+
+    # Verifica se a senha tem pelo menos 8 caracteres
+    if len(senha) < 8:
+        print("Senha fraca: deve conter pelo menos 8 caracteres.")
+        continue  # Volta ao início do laço
+
+    # Verifica se a senha contém pelo menos um número
+    if not re.search(r"\d", senha):
+        print("Senha fraca: deve conter pelo menos um número.")
+        continue  # Volta ao início do laço
+
+    # Se passou nas duas verificações acima, a senha é considerada forte
+    print("Senha forte cadastrada com sucesso!")
+    break  # Encerra o laço

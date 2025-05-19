@@ -1,26 +1,24 @@
-'''8- Calculadora Simples
-Enunciado:
-Crie um programa que simule uma calculadora simples. O usuário deve informar dois números e a operação desejada (+, -, *, /) e o programa deve exibir o resultado da operação.'''
+'''Crie um programa para registrar as temperaturas de vários dias. O usuário deve digitar a temperatura em graus Celsius (ex: 25.5). O programa continua coletando até que o usuário digite "fim" ou colete 7 temperaturas. Valores inválidos devem ser ignorados. Ao final, exiba a média das temperaturas registradas.'''
 
-num1 = float(input("Digite o primeiro número: "))
-num2 = float(input("Digite o segundo número: "))
+temperaturas = []
 
-operacao = input("Digite a operação a ser realizada (+, -, *, /): ")
+for dia in range(7):
+    entrada = input(f"Digite a temperatura do dia {dia+1} (ou 'fim' para encerrar): ")
 
-if operacao == "+":
-    resultado = num1 + num2
-    print(f"O resultado de {num1} + {num2} é: {resultado}")
-elif operacao == "-":
-    resultado = num1 - num2
-    print(f"O resultado de {num1} - {num2} é: {resultado}")
-elif operacao == "*":
-    resultado = num1 * num2
-    print(f"O resultado de {num1} * {num2} é: {resultado}")
-elif operacao == "/":
-    if num2 != 0:        
-        resultado = num1 / num2
-        print(f"O resultado de {num1} + {num2} é: {resultado}")
-    else:
-        print("Erro!!! divisão por zero não permitida.")
+    if entrada.lower() == 'fim':
+        break  # Encerra se o usuário digitar 'fim'
+
+    try:
+        temp = float(entrada)  # Tenta converter para float
+        temperaturas.append(temp)
+    except ValueError:
+        print("Entrada inválida. Digite um número válido (ex: 25.5).")
+        continue  # Ignora valores inválidos
+
+# Exibe os resultados
+if temperaturas:
+    media = sum(temperaturas) / len(temperaturas)
+    print(f"Temperaturas registradas: {temperaturas}")
+    print(f"Média das temperaturas: {media:.2f} °C")
 else:
-    print("Operação inválida.")
+    print("Nenhuma temperatura válida foi registrada.")

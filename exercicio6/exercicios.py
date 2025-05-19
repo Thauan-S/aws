@@ -1,16 +1,21 @@
+'''Peça ao usuário que digite 10 números inteiros. Armazene apenas os números pares válidos em uma lista. Use try/except para capturar erros, continue para ignorar números ímpares ou inválidos, e exiba a lista final ao terminar.'''
 
-aluno = input("Digite o nome do aluno: ")
+pares = []
 
-nota1 = float(input("Digite a primeira nota: "))
-nota2 = float(input("Digite a segunda nota: "))
-nota3 = float(input("Digite a terceira nota: "))
+for i in range(10):
+    entrada = input(f"Digite o {i+1}º número inteiro: ")
 
-media = (nota1 + nota2 + nota3) / 3
+    try:
+        numero = int(entrada)
 
-print(f"A média do(a) {aluno} é: {media:.2f}")
-if media >= 7:
-    print("Situação: APROVADO!")
-elif media >= 5:
-    print("Situação: Recuperação!")
-else:
-    print("Situação: REPROVADO!")
+        if numero % 2 == 0:
+            pares.append(numero)
+        else:
+            print("Número ímpar! Ignorado.")
+            continue  # Pula números ímpares
+
+    except ValueError:
+        print("Entrada inválida! Digite apenas números inteiros.")
+        continue  # Pula entrada inválida
+
+print(f"Números pares válidos: {pares}")
