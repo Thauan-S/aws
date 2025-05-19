@@ -1,7 +1,14 @@
 
-numero = int(input("Digite um número para ver sua tabuada: "))
+peso = float(input("Digite seu peso em kg: "))
+altura = float(input("Digite a sua altura em metros: "))
+imc = peso / (altura ** 2)
 
-print(f"\nTabuada do {numero}:")
-for i in range(1, 11):
-    resultado = numero * i
-    print(f"{numero} x {i} = {resultado}")
+if imc < 18.5:
+    print("Classificação: Abaixo do peso")
+elif imc < 25:
+    print("Classificação: Peso normal")
+elif imc < 30:
+    print("Classificação: Sobrepeso")
+else:
+    print("Classificação: OBESO!!!")
+print(f"Seu IMC é: {imc:.2f}")
