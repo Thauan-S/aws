@@ -1,29 +1,41 @@
-def par_ou_impar():
-    pares = 0
-    impares = 0
+'''Crie uma função que calcule a gorjeta a ser deixada em um restaurante, baseada no valor total da conta e na porcentagem de gorjeta desejada.
+A função deve receber dois parâmetros:
+valor_conta (float): O valor total da conta
+porcentagem_gorjeta (float): A porcentagem da gorjeta (por exemplo, 10 para 10%)'''
 
-    print("Digite números inteiros. Quando quiser parar, digite 'fim'.\n")
+# Define a função chamada calcular_gorjeta com dois parâmetros: valor_conta e porcentagem_gorjeta
+def calcular_gorjeta(valor_conta, porcentagem_gorjeta):
+    """
+    Calcula o valor da gorjeta com base no valor da conta e na porcentagem desejada.
+    """
+    # Calcula o valor da gorjeta: total da conta multiplicado pela porcentagem (dividido por 100)
+    gorjeta = valor_conta * (porcentagem_gorjeta / 100)
+    return gorjeta  # Retorna o valor calculado da gorjeta
 
-    while True:
-        entrada = input("Digite um número inteiro (ou 'fim' para encerrar): ")
+# A partir daqui começa o programa principal (fora da função)
 
-        if entrada.lower() == 'fim':
-            break
+while True:  # Inicia um laço que só termina quando os valores forem válidos
+    try:
+        # Solicita o valor total da conta e converte para float
+        valor = float(input("Digite o valor total da conta (em reais): R$ "))
 
-        try:
-            numero = int(entrada)
-            if numero % 2 == 0:
-                print("→ É par.\n")
-                pares += 1
-            else:
-                print("→ É ímpar.\n")
-                impares += 1
-        except ValueError:
-            print("Erro: entrada inválida. Por favor, digite um número inteiro.\n")
+        # Solicita a porcentagem da gorjeta e converte para float
+        porcentagem = float(input("Digite a porcentagem da gorjeta (%): "))
 
-    print("Programa encerrado.")
-    print(f"Quantidade de números pares: {pares}")
-    print(f"Quantidade de números ímpares: {impares}")
+        # Verifica se os valores são positivos
+        if valor < 0 or porcentagem < 0:
+            print("Os valores devem ser positivos. Tente novamente.")
+            continue  # Retorna ao início do laço se os valores forem negativos
 
-# Executa a função
-par_ou_impar()
+        # Chama a função calcular_gorjeta passando os valores digitados
+        valor_gorjeta = calcular_gorjeta(valor, porcentagem)
+
+        # Exibe o valor da gorjeta formatado com duas casas decimais
+        print(f"A gorjeta a ser deixada é: R$ {valor_gorjeta:.2f}")
+
+        # Encerra o programa após o cálculo com sucesso
+        break
+
+    except ValueError:
+        # Captura erro caso o usuário digite algo que não pode ser convertido em float
+        print("Entrada inválida. Digite números válidos para a conta e a porcentagem.")

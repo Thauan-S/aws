@@ -1,26 +1,22 @@
-'''Crie um programa que verifique se uma senha é forte. Uma senha forte deve ter pelo menos 8 caracteres e conter pelo menos um número. O programa deve continuar pedindo senhas até que uma válida seja inserida ou o usuário digite 'sair'.'''
+'''Crie uma função que recebe dois números e retorna a soma. O programa deve pedir os números ao usuário, chamar a função e exibir o resultado.'''
 
-import re  # Importa o módulo de expressões regulares (usado para verificar se há números)
+# Função que soma dois números
+def somar(a, b):
+    """
+    Recebe dois números e retorna a soma deles.
+    """
+    return a + b
 
-# Laço que continuará até que o usuário digite uma senha forte ou "sair"
-while True:
-    senha = input("Digite uma senha (ou 'sair' para encerrar): ")
+# Bloco principal
+if __name__ == "__main__":
+    try:
+        # Solicita os números do usuário
+        num1 = float(input("Digite o primeiro número: "))
+        num2 = float(input("Digite o segundo número: "))
 
-    # Verifica se o usuário quer encerrar
-    if senha.lower() == 'sair':
-        print("Programa encerrado.")
-        break  # Encerra o laço
+        # Chama a função e exibe o resultado
+        resultado = somar(num1, num2)
+        print(f"A soma é: {resultado}")
 
-    # Verifica se a senha tem pelo menos 8 caracteres
-    if len(senha) < 8:
-        print("Senha fraca: deve conter pelo menos 8 caracteres.")
-        continue  # Volta ao início do laço
-
-    # Verifica se a senha contém pelo menos um número
-    if not re.search(r"\d", senha):
-        print("Senha fraca: deve conter pelo menos um número.")
-        continue  # Volta ao início do laço
-
-    # Se passou nas duas verificações acima, a senha é considerada forte
-    print("Senha forte cadastrada com sucesso!")
-    break  # Encerra o laço
+    except ValueError:
+        print("Erro: Por favor, digite apenas números válidos.")

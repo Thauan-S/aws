@@ -1,42 +1,45 @@
-def calculadora():
-    while True:
+'''Crie uma função que receba uma lista de notas (valores float) e calcule a média. O programa principal deverá solicitar ao usuário o nome de um aluno e suas 3 notas, e então utilizar a função para calcular e exibir a média com duas casas decimais.'''
+
+# Define a função chamada calcular_media que recebe uma lista de notas como argumento
+def calcular_media(notas):
+    # Calcula a soma das notas e divide pela quantidade de notas para obter a média
+    media = sum(notas) / len(notas)
+    return media  # Retorna o valor da média
+
+# A partir daqui é o programa principal (fora da função)
+
+# Solicita ao usuário o nome do aluno
+aluno = input("Digite o nome do aluno: ")
+
+# Cria uma lista vazia onde serão armazenadas as 3 notas do aluno
+notas_aluno = []
+
+# Usa um laço for para pedir 3 notas ao usuário
+for i in range(1, 4):  # Vai de 1 até 3
+    while True:  # Laço infinito até que uma nota válida seja digitada
         try:
-            # Solicita os números ao usuário
-            num1 = float(input("Digite o primeiro número: "))
-            num2 = float(input("Digite o segundo número: "))
+            # Solicita a nota e tenta converter para float
+            nota = float(input(f"Digite a {i}ª nota: "))
+            # Verifica se a nota está dentro do intervalo válido (0 a 10)
+            if 0 <= nota <= 10:
+                notas_aluno.append(nota)  # Adiciona a nota à lista
+                break  # Sai do while se a nota for válida
+            else:
+                print("Nota inválida. Digite um valor entre 0 e 10.")
+        except ValueError:
+            # Trata o erro se o valor digitado não puder ser convertido para float
+            print("Entrada inválida. Digite um número válido.")
 
-            # Solicita a operação desejada
-            operacao = input("Digite a operação (+, -, *, /): ")
+# Chama a função calcular_media passando a lista de notas como argumento
+media_final = calcular_media(notas_aluno)
 
-            # Verifica se a operação é válida
-            if operacao not in ['+', '-', '*', '/']:
-                raise ValueError("Operação inválida. Use apenas +, -, * ou /.")
+# Exibe a média do aluno formatada com duas casas decimais
+print(f"A média de {aluno} é: {media_final:.2f}")
 
-            # Realiza a operação
-            if operacao == '+':
-                resultado = num1 + num2
-            elif operacao == '-':
-                resultado = num1 - num2
-            elif operacao == '*':
-                resultado = num1 * num2
-            elif operacao == '/':
-                if num2 == 0:
-                    raise ZeroDivisionError("Divisão por zero não é permitida.")
-                resultado = num1 / num2
-
-            # Exibe o resultado
-            print(f"Resultado: {resultado}")
-            break  # Sai do loop após operação bem-sucedida
-
-        except ValueError as ve:
-            # Trata entrada inválida ou operação desconhecida
-            print(f"Erro de entrada: {ve}. Tente novamente.")
-        except ZeroDivisionError as zde:
-            print(f"Erro matemático: {zde}. Tente novamente.")
-        except Exception as e:
-            # Trata qualquer outro erro genérico
-            print(f"Ocorreu um erro inesperado: {e}. Tente novamente.")
-
-# Executa a calculadora
-if __name__ == "__main__":
-    calculadora()
+# Verifica a situação do aluno com base na média
+if media_final >= 7:
+    print("Situação: Aprovado")
+elif media_final >= 5:
+    print("Situação: Recuperação")
+else:
+    print("Situação: Reprovado")
